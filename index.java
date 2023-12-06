@@ -1,4 +1,4 @@
-public class SnakeGame{
+public class index{
 public static void main(String[] args) {
 
     new GameFrame();
