@@ -108,12 +108,23 @@ public class GamePanel extends JPanel implements ActionListener{
 }
 
   //Generating apple on a random spot of the panel
-  public void newApple(){
+  public void newApple() {
+    boolean collision;
+    
+    do {
+        collision = false;
+        appleX = random.nextInt((int) (SCREEN_WIDTH / UNIT_SIZE)) * UNIT_SIZE;
+        appleY = random.nextInt((int) (SCREEN_HEIGHT / UNIT_SIZE)) * UNIT_SIZE;
 
-    appleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;
-    appleY = random.nextInt((int)(SCREEN_HEIGHT/UNIT_SIZE))*UNIT_SIZE;
-
-  }
+        // Check if the new apple coordinates collide with the snake
+        for (int i = 0; i < bodyParts; i++) {
+            if (appleX == x[i] && appleY == y[i]) {
+                collision = true;
+                break;
+            }
+        }
+    } while (collision);
+}
 
   //Snake movement 
   public void move(){
